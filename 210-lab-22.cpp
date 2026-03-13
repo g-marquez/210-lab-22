@@ -53,7 +53,9 @@ public:
             return;
         }
         //for a multi-node list, readjust pointers and delete temp
-        
+        tail->prev->next = nullptr;
+        tail = tail->prev;
+        delete temp;
     }
 
     void push_front(int value) {
@@ -170,6 +172,10 @@ public:
     }
 
     void print() {
+        if (!head) { // Empty list
+            cout << "Empty list" << endl;
+            return;
+        } 
         Node* current = head;
         if (!current) return;
         while (current) {
@@ -180,6 +186,10 @@ public:
     }
 
     void print_reverse() {
+        if (!head) { // Empty list
+            cout << "Empty list" << endl;
+            return;
+        }
         Node* current = tail;
         if (!current) return;
         while (current) {
@@ -210,6 +220,17 @@ int main() {
 
     cout << "List backward: ";
     list.print_reverse();
+
+    //exercising changes made to starter code
+    cout << "Deleting node at position 3:" << endl;
+    list.delete_pos(3);
+    list.print();
+
+    cout << "Deleting head:" << endl;
+    list.pop_front();
+
+    cout << "Deleting tail:" << endl;
+    list.pop_back();
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
