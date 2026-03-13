@@ -82,6 +82,25 @@ public:
         temp->next = newNode;
     }
 
+    void delete_pos(int position) {
+        if (!head) return; // Empty list
+
+        //check that position is valid
+        if (position < 0) {
+            cout << "Position must be >= 0." << endl;
+            return;
+        }
+
+        Node* current = head;
+        for (int i  = 0; i < position && current; ++i)
+            current = current->next;
+
+        if (!current) {
+            cout << "Position exceeds list size. Node not deleted.\n";
+            return;
+        }
+    }
+    
     void delete_val(int value) {
         if (!head) return; // Empty list
 
