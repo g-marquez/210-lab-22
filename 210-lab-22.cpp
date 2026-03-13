@@ -40,6 +40,10 @@ public:
         }
     }
 
+    void pop_back() {
+
+    }
+
     void push_front(int value) {
         Node* newNode = new Node(value);
         if (!head)  // if there's no head, the list is empty
@@ -49,6 +53,21 @@ public:
             head->prev = newNode;
             head = newNode;
         }
+    }
+
+    void pop_front() {
+        if (!head) { // Empty list
+            cout << "List empty, nothing deleted." << endl;
+            return;
+        }
+        Node* temp = head;
+        if (!head->next)
+            head = nullptr;
+        else {
+            head = head->next;
+            head->prev = nullptr;
+        }
+        delete temp;
     }
 
     void insert_after(int value, int position) {
