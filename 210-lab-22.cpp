@@ -90,15 +90,28 @@ public:
             cout << "Position must be >= 0." << endl;
             return;
         }
+        //traverse position number of times through the list
+        Node* temp = head;
+        for (int i  = 0; i < position && temp; ++i)
+            temp = temp->next;
 
-        Node* current = head;
-        for (int i  = 0; i < position && current; ++i)
-            current = current->next;
-
-        if (!current) {
+        if (!temp) {
             cout << "Position exceeds list size. Node not deleted.\n";
             return;
         }
+        //check if node to be deleted is the head
+        if (temp->prev)
+            temp->prev->next = temp->next;
+        else
+            head = temp->next; // Deleting the head
+
+        //check if node to be deleted is the tail
+        if (temp->next)
+            temp->next->prev = temp->prev;
+        else
+            tail = temp->prev; // Deleting the tail
+
+        delete temp;
     }
     
     void delete_val(int value) {
