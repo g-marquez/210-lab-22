@@ -41,7 +41,19 @@ public:
     }
 
     void pop_back() {
-
+        if (!head) { // Empty list
+            cout << "List empty, nothing deleted." << endl;
+            return;
+        }
+        Node* temp = tail;
+        //if only one node exists, head = tail = nullptr
+        if (head = tail) {
+            head = tail = nullptr;
+            delete temp;
+            return;
+        }
+        //for a multi-node list, readjust pointers and delete temp
+        
     }
 
     void push_front(int value) {
